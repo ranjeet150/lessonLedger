@@ -62,72 +62,80 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-2">Welcome back! Here's your learning progress.</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2">Welcome back! Here's your learning progress.</p>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Welcome */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold">Welcome back, {user.name}!</h2>
-          <p className="text-gray-600">Here's your learning progress.</p>
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold">Welcome back, {user.name}!</h2>
+          <p className="text-sm sm:text-base text-gray-600">Here's your learning progress.</p>
         </div>
 
         {/* Streak Card */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <StreakCard />
         </div>
 
         {/* Charts */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div className="card">
-            <h2 className="text-lg font-semibold mb-4">Weekly Study Hours</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={mockData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="hours" fill="#6366f1" />
-              </BarChart>
-            </ResponsiveContainer>
+            <h2 className="text-base sm:text-lg font-semibold mb-4">Weekly Study Hours</h2>
+            <div className="overflow-x-auto -mx-2 sm:mx-0">
+              <div className="min-w-[300px]">
+                <ResponsiveContainer width="100%" height={250}>
+                  <BarChart data={mockData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" tick={{ fontSize: 12 }} />
+                    <YAxis tick={{ fontSize: 12 }} />
+                    <Tooltip />
+                    <Bar dataKey="hours" fill="#6366f1" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
 
           <div className="card">
-            <h2 className="text-lg font-semibold mb-4">Progress Trend</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={mockData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="hours" stroke="#8b5cf6" />
-              </LineChart>
-            </ResponsiveContainer>
+            <h2 className="text-base sm:text-lg font-semibold mb-4">Progress Trend</h2>
+            <div className="overflow-x-auto -mx-2 sm:mx-0">
+              <div className="min-w-[300px]">
+                <ResponsiveContainer width="100%" height={250}>
+                  <LineChart data={mockData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" tick={{ fontSize: 12 }} />
+                    <YAxis tick={{ fontSize: 12 }} />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="hours" stroke="#8b5cf6" strokeWidth={2} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Tasks and Achievements */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           <div className="card">
             <TaskList />
           </div>
 
           <div className="card">
-            <h3 className="text-lg font-semibold mb-4">Recent Achievements</h3>
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Recent Achievements</h3>
             {achievements.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No achievements yet. Keep learning!</p>
+              <p className="text-gray-500 text-center py-8 text-sm">No achievements yet. Keep learning!</p>
             ) : (
               <div className="space-y-3">
                 {achievements.slice(0, 5).map((achievement) => (
                   <div key={achievement.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
                     <Award className="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-sm">{achievement.title}</p>
-                      <p className="text-xs text-gray-500">{achievement.description}</p>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-sm truncate">{achievement.title}</p>
+                      <p className="text-xs text-gray-500 line-clamp-2">{achievement.description}</p>
                     </div>
                   </div>
                 ))}

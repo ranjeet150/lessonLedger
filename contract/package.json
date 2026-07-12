@@ -4,7 +4,7 @@
   "description": "Stellar smart contracts for Academic Accountability Platform",
   "main": "dist/index.js",
   "scripts": {
-    "build": "soroban contract build",
+    "build": "node init && soroban contract build",
     "test": "soroban contract test",
     "deploy:testnet": "soroban contract deploy --network testnet",
     "deploy:mainnet": "soroban contract deploy --network mainnet"

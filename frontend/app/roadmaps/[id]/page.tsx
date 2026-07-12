@@ -108,11 +108,11 @@ export default function RoadmapDetailPage({ params }: { params: { id: string } }
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Frontend Development</h1>
-          <p className="text-gray-600 mt-2">Master HTML, CSS, JavaScript, and React</p>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Frontend Development</h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2">Master HTML, CSS, JavaScript, and React</p>
 
-          <div className="mt-6 flex items-center gap-4">
+          <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <div className="flex-1">
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-gray-600">Progress</span>
@@ -125,7 +125,7 @@ export default function RoadmapDetailPage({ params }: { params: { id: string } }
                 />
               </div>
             </div>
-            <div className="text-right">
+            <div className="text-center sm:text-right">
               <p className="text-sm text-gray-600">{completedTopics} of {totalTopics}</p>
               <p className="font-semibold text-primary">Topics Done</p>
             </div>
@@ -134,51 +134,51 @@ export default function RoadmapDetailPage({ params }: { params: { id: string } }
       </div>
 
       {/* Roadmap Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-4">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="space-y-3 sm:space-y-4">
           {roadmapData.map((section) => (
             <div key={section.title} className="card">
               <button
                 onClick={() => toggleSection(section.title)}
-                className="w-full flex items-center justify-between hover:bg-gray-50 p-4 -m-4 rounded-lg"
+                className="w-full flex items-center justify-between hover:bg-gray-50 p-3 sm:p-4 -m-3 sm:-m-4 rounded-lg min-h-[44px]"
               >
-                <h2 className="text-lg font-semibold text-gray-900">{section.title}</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900 text-left">{section.title}</h2>
                 <ChevronDown
-                  className={`w-5 h-5 text-gray-600 transition-transform ${
+                  className={`w-5 h-5 text-gray-600 transition-transform flex-shrink-0 ml-2 ${
                     expandedSections.includes(section.title) ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
               {expandedSections.includes(section.title) && (
-                <div className="mt-4 space-y-3 border-t border-gray-200 pt-4">
+                <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 border-t border-gray-200 pt-3 sm:pt-4">
                   {section.topics.map((topic) => (
                     <div key={topic.id}>
                       <button
                         onClick={() => toggleTopic(topic.id)}
-                        className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors min-h-[44px]"
                       >
                         {topic.completed ? (
                           <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
                         ) : (
                           <Circle className="w-5 h-5 text-gray-400 flex-shrink-0" />
                         )}
-                        <span className={`flex-1 text-left font-medium ${topic.completed ? 'text-gray-600 line-through' : 'text-gray-900'}`}>
+                        <span className={`flex-1 text-left text-sm sm:text-base font-medium break-words ${topic.completed ? 'text-gray-600 line-through' : 'text-gray-900'}`}>
                           {topic.title}
                         </span>
                         <ChevronDown
-                          className={`w-4 h-4 text-gray-600 transition-transform ${
+                          className={`w-4 h-4 text-gray-600 transition-transform flex-shrink-0 ${
                             expandedTopics.includes(topic.id) ? 'rotate-180' : ''
                           }`}
                         />
                       </button>
 
                       {expandedTopics.includes(topic.id) && (
-                        <div className="ml-8 mt-2 space-y-2 pb-2">
+                        <div className="ml-6 sm:ml-8 mt-2 space-y-2 pb-2">
                           {topic.subtopics.map((subtopic, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                              <div className="w-1.5 h-1.5 bg-gray-400 rounded-full" />
-                              {subtopic}
+                            <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+                              <div className="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                              <span className="break-words">{subtopic}</span>
                             </div>
                           ))}
                         </div>

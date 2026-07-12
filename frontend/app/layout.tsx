@@ -5,6 +5,12 @@ import Providers from '@/components/Providers'
 export const metadata: Metadata = {
   title: 'Academic Accountability Platform',
   description: 'Track your learning journey with structured roadmaps and blockchain-verified achievements',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
 }
 
 export default function RootLayout({

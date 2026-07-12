@@ -4,19 +4,19 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-lg shadow-sm p-6 border border-gray-100;
+    @apply bg-white rounded-lg shadow-sm p-4 sm:p-6 border border-gray-100;
   }
 
   .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium;
+    @apply px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors font-medium min-h-[44px] flex items-center justify-center;
   }
 
   .btn-secondary {
-    @apply px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium;
+    @apply px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-colors font-medium min-h-[44px] flex items-center justify-center;
   }
 
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base min-h-[44px];
   }
 }
 
@@ -28,6 +28,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Prevent font size adjustments on orientation changes on iOS */
+  -webkit-text-size-adjust: 100%;
+  /* Improve tap highlight */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -36,4 +40,49 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+}
+
+/* Improve touch interactions */
+button, 
+a, 
+input[type="button"], 
+input[type="submit"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Ensure images are responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Line clamping utility classes */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Improve scrolling on iOS */
+.scroll-smooth {
+  -webkit-overflow-scrolling: touch;
 }
